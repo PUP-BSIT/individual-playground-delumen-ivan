@@ -1,38 +1,48 @@
-def order_management():
-    product_orders = []
-    while True:
-        product_name = input("Product Name: ")
-        product_price = int(input("Price: "))
-        product_quantity = int(input("Quantity: "))
+all_items = [] # global list
 
-        total_amount = product_price * product_quantity
-        product_orders.append ((product_name, product_price, product_quantity, total_amount))
+#function for product details -Simone Reyes
+def order_take():
+    global product_name, product_price, product_quantity
+    product_name =  input("Product Name: ")
+    product_price = int (input("Price: "))
+    product_quantity = int (input("Quantity: "))
+    total = product_price * product_quantity
 
-        # Ask the user if they want to add a product
-        add_product = input("Do you want to add another item? (y/n): ")
-        if add_product != 'y':
-            break
+    return [product_name, product_price, product_quantity, total]
 
-    # Customer details
-    customer_name = input("\nCustomer Name: ")
+#taking order from customer - Ivan Delumen
+is_order_again = True 
+while is_order_again: # loop that continues as long as the user wants to add orders
+    all_items.append(order_take())
+    user_prompt = input("Would you like add another order? y - YES / n - NO: ")
+    is_order_again = user_prompt == 'y' #type casting of user_prompt input to boolean
 
-    # Ensure proper handling for Senior ID input.  we used typecast to convert the string to int
-    senior_id_input = input("Senior ID No (blank if not senior citizen): ")
+total_amount = sum(item[3] for item in all_items)
 
-    # Calculate total and apply the discount
-    grand_total = sum(product[3] for product in product_orders)  # sum total_amounts
+#function for senior citizen details - Daniel Victorioso
+def senior_citizen_details(total_amount, senior_id_no):
+    total_amount = sum(item[3] for item in all_items)
+    if senior_id_no.strip() == "":
+        return total_amount
+    
+    discount = total_amount * 0.10
+    total_amount -= discount
+    return total_amount
 
-    senior_id_input
-    while True:
-        discount = grand_total * 0.10
-        grand_total -= discount #used to apply a discount to the grand total
-        break
+#buyer details and senior citizen details - Gerald Mamasalanang
+buyer_name = input("\nWhat is your name: ")
+senior_id_no = input("Senior ID no. (leave blank if not a senior): ")
 
-    # Final print
-    for product in product_orders:
-        print(f"\nItem: {product[0]}, Price: {product[1]}, Quantity: {product[2]}, Total Amount: {product[3]}")
-    print(f"Customer Name: {customer_name}")
-    print(f"Senior ID No: {senior_id_input}")
-    print(f"Grand Total: {grand_total}")
+total_amount = senior_citizen_details(total_amount, senior_id_no)
 
-order_management()
+#Grand total and all details - Michael Mosquito
+print("\n")
+for item in all_items:
+    print(f"Items: {item[0]}, Price: {item[1]}, Quantity: {item[2]}, Total: {item[3]}")
+print(f"\nCustomer Name: {buyer_name}")
+print(f"Senior ID No.: ", end="")
+if senior_id_no:
+    print(senior_id_no)
+else:
+    print()
+print(f"Grand Total: {total_amount}")
