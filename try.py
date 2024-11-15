@@ -25,7 +25,12 @@ calculate(num_1=3, num_2=5, operator="+")"""
 
 calculate(num_1=3, num_2=5, operator="+")"""
 
-even_numbers = (1, 3, 8)
+"""even_numbers = (1, 3, 8)
 print(even_numbers[1]) #access items in tuple
 for item in even_numbers: #iterating items in tuple
     print(item)
+"""
+
+ccord = (5, 7)
+y, x = ccord
+print(ccord)
