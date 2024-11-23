@@ -50,11 +50,13 @@ def update_appointment(appointments):
 def delete_appointment(appointments):
     """Deletes an appointment from the list."""
     appointment_id = input("Enter the ID of the appointment to delete: ")
+    
     for delete, appointment in enumerate(appointments):
         if appointment['id'] == appointment_id:
             del appointments[delete]
             print("Appointment record deleted successfully!")
             return
+        
     print("Appointment not found.")
 
 def search_appointment(appointments):

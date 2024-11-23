@@ -31,6 +31,7 @@ for item in even_numbers: #iterating items in tuple
     print(item)
 """
 
-ccord = (5, 7)
+"""ccord = (5, 7)
 y, x = ccord
-print(ccord)
+print(ccord)"""
+
