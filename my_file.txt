@@ -1,2 +1,6 @@
 Git branch demo.
+<<<<<<< HEAD
 main branch change
+=======
+feature-1 change
+>>>>>>> feature-1
